@@ -8,12 +8,13 @@ from PIL import Image
 import numpy as np
 from tensorflow.keras.models import load_model
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../build', static_url_path='/')
+
 CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
 
 @app.route("/")
 def home():
-    return {"message": "Hello from backend"}
+    return app.send_static_file('index.html')
 
 @app.route("/upload", methods=['POST'])
 def upload():
