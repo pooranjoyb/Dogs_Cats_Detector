@@ -9,7 +9,7 @@ function App() {
   const [filename, setFilename] = useState("No file Uploaded")
 
   useEffect(() => {
-    fetch("http://localhost:5000")
+    fetch("/")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -25,7 +25,7 @@ function App() {
     formData.append("file", file);
 
     try {
-      axios.post("http://localhost:5000/upload", formData).then((res) => {
+      axios.post("/upload", formData).then((res) => {
         console.log(res.data.message);
         setVal(res.data.message);
       });
